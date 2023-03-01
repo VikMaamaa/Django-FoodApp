@@ -1,8 +1,36 @@
 {% extends 'food/base.html' %}
+{% load widget_tweaks %}
 {% block body %}
-<form method="POST">
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-4 offset-md-4 mt-3'>
+            <div class='card'>
+                <div class='card-header text-white bg-info'>
+                    <div class='card-title'>
+                        Login
+                    </div>
+                </div>  
+                    <div class='card-body'>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% comment %} {{ form }} {% endcomment %}
+                            {% for field in form %}
+                                <div class='form-group mt-3'>
+                                    {{field.label}}
+                                    {{field|add_class:"form-control mt-1" }}
+                                </div>
+                            {% endfor %}
+                            <button class='btn bg-info mt-3 float-end' type="submit">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% comment %} <form method="POST">
     {% csrf_token %}
     {{form}}
     <button type="submit">Save</button>
-</form>
+</form> {% endcomment %}
 {% endblock body %}
